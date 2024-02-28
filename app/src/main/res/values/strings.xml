@@ -1,3 +1,93 @@
 <resources>
     <string name="app_name">busbooking</string>
+
+    <string-array name="oneonefiveFrom">
+        <item>From</item>
+        <item>Enfield</item>
+        <item>Cloncurry Cross</item>
+        <item>Kelleghers Cross</item>
+        <item>Ferrans Lock</item>
+        <item>Kilcock</item>
+        <item>Kilcock Square</item>
+        <item>Millerstown</item>
+        <item>Maynooth University</item>
+        <item>Old Greenfield</item>
+        <item>Tandys Lane</item>
+        <item>Liffey Valley Sc</item>
+        <item>Kennelsfort Road</item>
+        <item>Heuston Station</item>
+        <item>Bachelors Walk</item>
+        <item>Connolly Station</item>
+    </string-array>
+
+    <string-array name="oneonefiveTo">
+        <item>To</item>
+        <item>Enfield</item>
+        <item>Cloncurry Cross</item>
+        <item>Kelleghers Cross</item>
+        <item>Ferrans Lock</item>
+        <item>Kilcock</item>
+        <item>Kilcock Square</item>
+        <item>Millerstown</item>
+        <item>Maynooth University</item>
+        <item>Old Greenfield</item>
+        <item>Tandys Lane</item>
+        <item>Liffey Valley Sc</item>
+        <item>Kennelsfort Road</item>
+        <item>Heuston Station</item>
+        <item>Bachelors Walk</item>
+        <item>Connolly Station</item>
+    </string-array>
+
+    <string-array name="onetwentyFrom">
+        <item>From</item>
+        <item>Edenderry SC</item>
+        <item>Edenderry Town Hall</item>
+        <item>Colonel Perry Street</item>
+        <item>Carbury</item>
+        <item>Derrinturn</item>
+        <item>Allenwood</item>
+        <item>Coill Dubh</item>
+        <item>Prosperous Church</item>
+        <item>Clane Garda Station</item>
+        <item>Straffan</item>
+        <item>Barberstown Cross</item>
+        <item>St Wolstans School</item>
+        <item>Tandys Lane</item>
+        <item>Liffey Valley SC</item>
+        <item>Heuston Station</item>
+        <item>Bachelors Walk</item>
+        <item>Connolly Station</item>
+    </string-array>
+
+    <string-array name="onetwentyTo">
+        <item>To</item>
+        <item>Edenderry SC</item>
+        <item>Edenderry Town Hall</item>
+        <item>Colonel Perry Street</item>
+        <item>Carbury</item>
+        <item>Derrinturn</item>
+        <item>Allenwood</item>
+        <item>Coill Dubh</item>
+        <item>Prosperous Church</item>
+        <item>Clane Garda Station</item>
+        <item>Straffan</item>
+        <item>Barberstown Cross</item>
+        <item>St Wolstans School</item>
+        <item>Tandys Lane</item>
+        <item>Liffey Valley SC</item>
+        <item>Heuston Station</item>
+        <item>Bachelors Walk</item>
+        <item>Connolly Station</item>
+    </string-array>
+
+    <string-array name="Notice">
+        <item>From</item>
+        <item>Please select a route first</item>
+    </string-array>
+
+    <string-array name="Notice2">
+        <item>To</item>
+        <item>Please select a route first</item>
+    </string-array>
 </resources>

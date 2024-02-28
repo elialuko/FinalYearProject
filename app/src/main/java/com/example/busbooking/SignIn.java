@@ -3,6 +3,7 @@ package com.example.busbooking;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -51,10 +52,14 @@ public class SignIn extends AppCompatActivity {
 
             private void login(String email, String password) {
                 FirebaseAuth auth = FirebaseAuth.getInstance();
+                final ProgressDialog mDialog = new ProgressDialog(SignIn.this);
+                mDialog.setMessage("Please Wait");
+                mDialog.show();
                 auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(SignIn.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            mDialog.dismiss();
                             Toast.makeText(SignIn.this, "Login Successful", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignIn.this, Welcome.class);
                             startActivity(intent);

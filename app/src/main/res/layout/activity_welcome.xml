@@ -152,8 +152,8 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/feedback_card"
-            android:tag="feedback"
+            android:id="@+id/reports_card"
+            android:tag="reports"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:layout_width="160dp"
@@ -203,8 +203,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
-            android:id="@+id/profileview_card"
-            android:tag="profileview"
+            android:id="@+id/logout_card"
+            android:tag="logout"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:layout_width="340dp"
