@@ -14,7 +14,7 @@ public class Logout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout);
-        FirebaseDatabase.getInstance().goOffline();
+        //FirebaseDatabase.getInstance().goOffline();
         finish();
         Toast.makeText(Logout.this, "Logged Out", Toast.LENGTH_LONG).show();
         startActivity(new Intent(this, MainActivity.class));

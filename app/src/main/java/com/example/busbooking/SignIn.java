@@ -64,6 +64,7 @@ public class SignIn extends AppCompatActivity {
                             Intent intent = new Intent(SignIn.this, Welcome.class);
                             startActivity(intent);
                         }else{
+                            mDialog.dismiss();
                             Toast.makeText(SignIn.this, "Login Unsuccessful", Toast.LENGTH_LONG).show();
                         }
                     }
