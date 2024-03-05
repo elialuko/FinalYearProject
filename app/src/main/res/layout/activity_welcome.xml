@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="Bus Fares"/>
+                    android:text="Fares &amp; Timetables"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="View fare Prices"
+                    android:text="View Fare Prices &amp; Timetables"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
             </LinearLayout>
@@ -109,8 +109,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
-            android:id="@+id/profile_card"
-            android:tag="profile"
+            android:id="@+id/journey_card"
+            android:tag="journey"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:layout_width="160dp"
@@ -125,7 +125,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circlebackgroundgreen"
-                    android:src="@drawable/ic_feedback_black_24dp"
+                    android:src="@drawable/baseline_map_24"
                     android:padding="10dp"
                     />
                 <TextView
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="------"/>
+                    android:text="Journey Planning"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="--------"
+                    android:text="Plan A Journey"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 

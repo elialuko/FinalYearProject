@@ -26,9 +26,11 @@ public class Booking extends AppCompatActivity {
 
     EditText name, surname, number, email;
     RadioButton oneonefive, onetwenty, adult, student, child;
+    RadioGroup rg;
     Button checkout;
 
     RadioGroup routeType;
+    String fromSel, toSel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,8 @@ public class Booking extends AppCompatActivity {
         child = findViewById(R.id.rbChild);
         routeType =  findViewById(R.id.RouteType);
         checkout = findViewById(R.id.CheckoutBtn);
+        rg = findViewById(R.id.rg_TicketType);
+
 
         populateSpinnersWithDefaultArrays();
 
@@ -57,29 +61,31 @@ public class Booking extends AppCompatActivity {
                     ArrayAdapter<String> myAdapter = new ArrayAdapter<>(Booking.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.oneonefiveFrom));
                     myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     mySpinner.setAdapter(myAdapter);
-                    String fromSel = mySpinner.getSelectedItem().toString();
+                    fromSel = mySpinner.getSelectedItem().toString();
+
 
                     Spinner mySpinner1 = findViewById(R.id.spinner2);
                     ArrayAdapter<String> myAdapter1 = new ArrayAdapter<>(Booking.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.oneonefiveTo));
                     myAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     mySpinner1.setAdapter(myAdapter1);
-                    String toSel = mySpinner1.getSelectedItem().toString();
+                    toSel = mySpinner1.getSelectedItem().toString();
                 } else if (checkedId == R.id.onetwenty) {
                     // Code to populate spinners for onetwenty
                     Spinner mySpinner = findViewById(R.id.spinner1);
                     ArrayAdapter<String> myAdapter = new ArrayAdapter<>(Booking.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.onetwentyFrom));
                     myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     mySpinner.setAdapter(myAdapter);
-                    String fromSel = mySpinner.getSelectedItem().toString();
+                    fromSel = mySpinner.getSelectedItem().toString();
 
                     Spinner mySpinner1 = findViewById(R.id.spinner2);
                     ArrayAdapter<String> myAdapter1 = new ArrayAdapter<>(Booking.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.onetwentyTo));
                     myAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     mySpinner1.setAdapter(myAdapter1);
-                    String toSel = mySpinner1.getSelectedItem().toString();
+                    toSel = mySpinner1.getSelectedItem().toString();
                 } else {
                     populateSpinnersWithDefaultArrays();
                 }
+
             }
         });
 
@@ -91,6 +97,12 @@ public class Booking extends AppCompatActivity {
                 String textEmail = email.getText().toString();
                 String textNumber = number.getText().toString();
 
+                int selectedId = rg.getCheckedRadioButtonId();
+                child = findViewById(selectedId);
+                student = findViewById(selectedId);
+                adult = findViewById(selectedId);
+                String rtext=child.getText().toString();
+
                 if (TextUtils.isEmpty(textName)){
                     Toast.makeText(Booking.this, "Please Enter a Name", Toast.LENGTH_LONG).show();
                 } else if(TextUtils.isEmpty(textSurname)){
@@ -100,18 +112,22 @@ public class Booking extends AppCompatActivity {
                 }else if(TextUtils.isEmpty(textEmail)){
                     Toast.makeText(Booking.this, "Please Enter an Email", Toast.LENGTH_LONG).show();
                 }else{
-                    /*FirebaseAuth auth = FirebaseAuth.getInstance();
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
                     FirebaseUser firebaseUser = auth.getCurrentUser();
                     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(firebaseUser.getUid());
                     DatabaseReference bookingRef = userRef.child("Bookings");
                     String bookingsID = bookingRef.push().getKey();
                     Map<String, Object> bookingData = new HashMap<>();
+                    Spinner mySpinner = findViewById(R.id.spinner1);
+                    Spinner mySpinner1 = findViewById(R.id.spinner2);
+                    fromSel = mySpinner.getSelectedItem().toString();
+                    toSel = mySpinner1.getSelectedItem().toString();
                     bookingData.put("name",textName);
                     bookingData.put("email",textEmail);
-                    bookingData.put("type",);
-                    bookingData.put("route",);
                     bookingData.put("from",fromSel);
-                    bookingData.put("to",toSel);*/
+                    bookingData.put("to",toSel);
+                    bookingRef.child(bookingsID).setValue(bookingData);
+
 
                     Intent intent = new Intent(Booking.this, Payment.class);
                     startActivity(intent);

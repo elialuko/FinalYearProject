@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 public class Welcome extends AppCompatActivity implements View.OnClickListener {
-    CardView fare, booking, profile, reports, logout;
+    CardView fare, booking, journey, reports, logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,13 +17,13 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
 
         fare = findViewById(R.id.fare_card);
         booking = findViewById(R.id.booking_card);
-        profile = findViewById(R.id.profile_card);
+        journey = findViewById(R.id.journey_card);
         reports = findViewById(R.id.reports_card);
         logout = findViewById(R.id.logout_card);
 
         fare.setOnClickListener(this);
         booking.setOnClickListener(this);
-        profile.setOnClickListener(this);
+        journey.setOnClickListener(this);
         reports.setOnClickListener(this);
         logout.setOnClickListener(this);
     }
@@ -40,7 +40,7 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
             case "booking" : i = new Intent(Welcome.this, Booking.class);
             startActivity(i);
             break;
-            case "profile" : i = new Intent(Welcome.this, MainActivity.class);
+            case "journey" : i = new Intent(Welcome.this, JourneyPlanner.class);
             startActivity(i);
             break;
             case "reports" : i = new Intent(Welcome.this, Reports.class);

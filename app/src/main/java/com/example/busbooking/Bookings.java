@@ -1,17 +1,15 @@
 package com.example.busbooking;
 
 public class Bookings {
-    private String name, email, type, route, from, to;
+    private String name, email, from, to;
 
     public Bookings(){
 
     }
 
-    public Bookings(String name, String email, String type, String route, String from, String to) {
+    public Bookings(String name, String email, String from, String to) {
         this.name = name;
         this.email = email;
-        this.type = type;
-        this.route = route;
         this.from = from;
         this.to = to;
     }
@@ -30,22 +28,6 @@ public class Bookings {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getRoute() {
-        return route;
-    }
-
-    public void setRoute(String route) {
-        this.route = route;
     }
 
     public String getFrom() {
