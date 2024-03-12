@@ -245,8 +245,8 @@
 
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
-            android:id="@+id/logout_card"
-            android:tag="logout"
+            android:id="@+id/analytics_card"
+            android:tag="analytics"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:layout_width="160dp"
@@ -261,7 +261,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circlebackgroundgreen"
-                    android:src="@drawable/ic_exit_to_app_black_24dp"
+                    android:src="@drawable/baseline_analytics_24"
                     android:padding="10dp"
                     />
                 <TextView
@@ -269,7 +269,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="Logout"/>
+                    android:text="Your Analytics"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -279,7 +279,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Exit App"
+                    android:text="View  Your Analytics"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
             </LinearLayout>
@@ -287,6 +287,58 @@
         </androidx.cardview.widget.CardView>
 
 
+
+
     </LinearLayout>
+
+    <LinearLayout
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/logout_card"
+        android:tag="logout"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:layout_width="340dp"
+        android:layout_height="113dp"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/circlebackgroundgreen"
+                android:src="@drawable/ic_exit_to_app_black_24dp"
+                android:padding="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:text="Logout"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray"
+                android:layout_margin="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Exit App"
+                android:padding="5dp"
+                android:textColor="@android:color/darker_gray"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
