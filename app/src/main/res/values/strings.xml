@@ -90,4 +90,10 @@
         <item>To</item>
         <item>Please select a route first</item>
     </string-array>
+
+    <string-array name="reportsSpinner">
+        <item>Other</item>
+        <item>Bigger Bus Needed</item>
+        <item>Smaller Bus Needed</item>
+    </string-array>
 </resources>

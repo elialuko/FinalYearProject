@@ -3,13 +3,18 @@ package com.example.busbooking;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Cartesian;
 import com.anychart.charts.Pie;
+import com.anychart.core.Chart;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +31,7 @@ public class Analytics extends AppCompatActivity {
 
     AnyChartView anyChartView;
     FirebaseDatabase database;
+    Button reports;
     String[] months = {"Clane Garda Station","Bachelors Walk","Edenderry Town Hall","Colonel Perry Street","Carbury","Derrinturn","Allenwood","Coill Dubh","Prosperous Church","Straffan","Barberstown Cross","St Wolstans School","Tandys Lane","Liffey Valley SC","Heuston Station","Connolly Station"};
 
     @Override
@@ -53,6 +59,15 @@ public class Analytics extends AppCompatActivity {
         AtomicInteger countLV = new AtomicInteger(0);
         AtomicInteger countHS = new AtomicInteger(0);
         AtomicInteger countCS = new AtomicInteger(0);
+        reports = findViewById(R.id.reportAnalytics);
+
+        reports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Analytics.this, ReportAnalytics.class);
+                startActivity(intent);
+            }
+        });
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("User").child(firebaseUser.getUid()).child("Bookings");
@@ -123,16 +138,16 @@ public class Analytics extends AppCompatActivity {
         }
 
         private void populateUI(int count){
-            int[] salary = {count,2,3,5};
-            Pie pie = AnyChart.pie();
+            //int[] salary = {count.get(),countBW.get(),countET.get(),countCPS.get(),countCar.get(),countDer.get(),countAll.get(),countCD.get(),countPC.get(),countStr.get(),countBC.get(),countSWS.get(),countTL.get(),countLV.get(),countHS.get(),countCS.get()};
+            Chart chart = AnyChart.bar();
             List<DataEntry> dataEntries = new ArrayList<>();
 
             for(int i=0; i<months.length;i++){
-                dataEntries.add(new ValueDataEntry(months[i],salary[i]));
+                //dataEntries.add(new ValueDataEntry(months[i],salary[i]));
             }
-            pie.data(dataEntries);
-            pie.title("Salary");
-            anyChartView.setChart(pie);
+            ((Cartesian) chart).data(dataEntries);
+            chart.title("Where Your Buying Your Tickets To");
+            anyChartView.setChart(chart);
         }
 
 
