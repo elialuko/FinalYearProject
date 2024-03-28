@@ -25,6 +25,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -40,137 +41,80 @@ public class ReportAnalytics extends AppCompatActivity {
 
     AnyChartView anyChartView;
     FirebaseDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_analytics);
-        anyChartView=findViewById(R.id.anyChartView);
-        database = FirebaseDatabase.getInstance();
-        AtomicInteger countO = new AtomicInteger(0);
+        anyChartView = findViewById(R.id.anyChartView);
         AtomicInteger countB = new AtomicInteger(0);
         AtomicInteger countS = new AtomicInteger(0);
-        List<String> reportEntry = new ArrayList<>();
-        final ArrayList<String> datesList = new ArrayList<>();
-        ArrayList<String> timesList = new ArrayList<>();
+        database = FirebaseDatabase.getInstance();
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("User").child(firebaseUser.getUid()).child("Reports");
 
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Map<String, Integer> reportCounts = new HashMap<>();
-                Set<String> uniqueDates = new HashSet<>();
-
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    String date = snapshot.child("date").getValue(String.class);
-                    reportEntry.add(date);
-                    if (!uniqueDates.contains(date)){
-
-                        uniqueDates.add(date);
-                        datesList.add(date);
-                    }
-
-
-                    String time = snapshot.child("time").getValue(String.class);
-                    timesList.add(time);
-                    String reportdb = dataSnapshot.child("report").getValue(String.class);
-                    if (reportdb != null) {
-                        // Increment the count for the corresponding report type
-                        reportCounts.put(date, reportCounts.getOrDefault(date, 0) + 1);
-                    }
-                    if(reportdb!=null && reportdb.equals("Other")){
-                        countO.incrementAndGet();
-                    }
-                    if(reportdb!=null && reportdb.equals("Bigger Bus Needed")){
-                        countB.incrementAndGet();
-                    }
-                    if(reportdb!=null && reportdb.equals("Smaller Bus Needed")){
-                        countB.incrementAndGet();
-                    }
-
-                    reportEntry.add(reportdb);
-                }
-
-                Collections.sort(datesList, new Comparator<String>() {
-                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-
-                    @Override
-                    public int compare(String date1, String date2) {
-                        try {
-                            Date d1 = dateFormat.parse(date1);
-                            Date d2 = dateFormat.parse(date2);
-                            return d1.compareTo(d2);
-                        } catch (ParseException e) {
-                            throw new IllegalArgumentException(e);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<String> dateList = new ArrayList<>();
+                Map<String, Integer> biggerBusMap = new HashMap<>();
+                Map<String, Integer> smallerBusMap = new HashMap<>();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String date = dataSnapshot.child("date").getValue(String.class);
+                        String bus = dataSnapshot.child("report").getValue(String.class);
+                        dateList.add(date);
+                        if (date != null && bus != null) {
+                            if (bus.equals("Bigger Bus Needed")) {
+                                biggerBusMap.put(date, biggerBusMap.getOrDefault(date, 0) + 1);
+                            }
+                            if (bus.equals("Smaller Bus Needed")) {
+                                smallerBusMap.put(date, smallerBusMap.getOrDefault(date, 0) + 1);
+                            }
                         }
-                    }
-                });
-                Collections.sort(timesList, new Comparator<String>() {
-                    DateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
-                    @Override
-                    public int compare(String time1, String time2) {
-                        try {
-                            Date t1 = timeFormat.parse(time1);
-                            Date t2 = timeFormat.parse(time2);
-                            return t1.compareTo(t2);
-                        } catch (ParseException e) {
-                            throw new IllegalArgumentException(e);
-                        }
-                    }
 
-                });
-                List[] data = {reportEntry};
-                String[] dates = datesList.toArray(new String[0]);
-                String[] times = timesList.toArray(new String[0]);
-                List<Integer> minutesList = new ArrayList<>();
-                for (String time : timesList) {
-                    minutesList.add(convertTimeStringToMinutes(time));
                 }
+                int[] biggerBus = new int[dateList.size()];
+                int[] smallerBus = new int[dateList.size()];
+                //Arrays.fill(biggerBus, countB.get());
+                //Arrays.fill(smallerBus, countS.get());
+                for (int i = 0; i < dateList.size(); i++) {
+                    String date = dateList.get(i);
+                    biggerBus[i] = biggerBusMap.getOrDefault(date, 0);
+                    smallerBus[i] = smallerBusMap.getOrDefault(date, 0);
+                }
+                String[] dates= dateList.toArray(new String[0]);
                 Chart chart = AnyChart.bar();
                 List<DataEntry> dataEntries = new ArrayList<>();
-                int[] reportdatab ={countO.get(), countB.get(), countS.get()};
 
-                for(String date: datesList){
-                    int count = reportCounts.getOrDefault(date, 0);
-                    dataEntries.add(new ValueDataEntry(date,count));
-                    List<DataEntry> additionalDataEntries = new ArrayList<>();
-                    for (int i = 0; i < datesList.size(); i++) {
-                        additionalDataEntries.add(new ValueDataEntry(datesList.get(i), count));
-                    }
-                    com.anychart.data.Set set = com.anychart.data.Set.instantiate();
-                    set.data(dataEntries);
-                    com.anychart.data.Set additionalSet = com.anychart.data.Set.instantiate();
-                    additionalSet.data(additionalDataEntries);
-                    ((Cartesian) chart).addSeries(set);
-                    ((Cartesian) chart).addSeries(additionalSet);
+                for(int i=0; i<dates.length;i++){
+                    dataEntries.add(new CustomDataEntry(dates[i],biggerBus[i],smallerBus[i]));
                 }
                 ((Cartesian) chart).data(dataEntries);
-                chart.title("Where Your Buying Your Tickets To");
+                chart.title("Bus Capacity Reports");
+
+                ((Cartesian) chart).xAxis(0).title("Dates");
+                ((Cartesian) chart).yAxis(0).title("Amount");
+
+                ((Cartesian) chart).getSeries(0).name("Bigger Bus Needed");
+                ((Cartesian) chart).getSeries(1).name("Smaller Bus Needed");
+
                 anyChartView.setChart(chart);
-
-
-
-
             }
-
-            private Integer convertTimeStringToMinutes(String timeString) {
-                String[] parts = timeString.split(":");
-                int hours = Integer.parseInt(parts[0]);
-                int minutes = Integer.parseInt(parts[1]);
-                return hours * 60 + minutes;
-            }
-
 
             @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
+            }
+        });
 
-                });
+
     }
-
+    private class CustomDataEntry extends ValueDataEntry {
+        CustomDataEntry(String x, Number biggerBus, Number smallerBus) {
+            super(x, biggerBus);
+            setValue("smallerBus", smallerBus);
+        }
+    }
 }
