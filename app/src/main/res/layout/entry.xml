@@ -5,15 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="12dp"
     app:cardCornerRadius="12dp"
-    android:layout_margin="16dp"
-    android:background="@color/green">
+    android:layout_margin="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:orientation="vertical"
-        android:background="@color/green">
+        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name:"
+        android:textStyle="bold"
         android:textSize="24dp"
         android:textColor="@color/black"
         style="bold" />
@@ -34,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24dp"
+            android:textStyle="bold"
             android:textColor="@color/black"/>
 
     </LinearLayout>
@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:text="Email:"
             android:textSize="24dp"
+            android:textStyle="bold"
             android:textColor="@color/black"
             style="bold" />
 
@@ -56,6 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24dp"
+            android:textStyle="bold"
             android:textColor="@color/black"/>
     </LinearLayout>
     <LinearLayout
@@ -69,6 +71,7 @@
             android:layout_height="wrap_content"
             android:text="From:"
             android:textSize="24dp"
+            android:textStyle="bold"
             android:textColor="@color/black"
             style="bold" />
 
@@ -77,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24dp"
+            android:textStyle="bold"
             android:textColor="@color/black"/>
     </LinearLayout>
         <LinearLayout
@@ -90,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="To:"
                 android:textSize="24dp"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 style="bold" />
 
@@ -98,6 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
+                android:textStyle="bold"
                 android:textColor="@color/black"/>
         </LinearLayout>
 

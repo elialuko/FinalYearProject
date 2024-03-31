@@ -50,7 +50,7 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
             case "reports" : i = new Intent(Welcome.this, Reports.class);
             startActivity(i);
             break;
-            case "tickets" : i = new Intent(Welcome.this, com.example.busbooking.List.class);
+            case "tickets" : i = new Intent(Welcome.this, Profile.class);
             startActivity(i);
             break;
             case "analytics" : i = new Intent(Welcome.this, Analytics.class);

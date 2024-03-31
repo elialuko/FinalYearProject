@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="Booking"/>
+                    android:text="Bookings"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -219,7 +219,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circlebackgroundgreen"
-                    android:src="@drawable/baseline_book_online_24"
+                    android:src="@drawable/baseline_account_box_24"
                     android:padding="10dp"
                     />
                 <TextView
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="Tickets"/>
+                    android:text="Profile"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -237,7 +237,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="View Your Booked Tickets"
+                    android:text="View Your Profile"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 
