@@ -53,23 +53,30 @@ public class ReportAnalytics extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("User").child(firebaseUser.getUid()).child("Reports");
+        DatabaseReference userRef2 = database.getReference("User");
 
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<String> dateList = new ArrayList<>();
                 Map<String, Integer> biggerBusMap = new HashMap<>();
                 Map<String, Integer> smallerBusMap = new HashMap<>();
+                long sevenDaysAgo = System.currentTimeMillis() - (7 * 24 * 60 * 60 * 1000);
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        String date = dataSnapshot.child("date").getValue(String.class);
-                        String bus = dataSnapshot.child("report").getValue(String.class);
-                        dateList.add(date);
-                        if (date != null && bus != null) {
-                            if (bus.equals("Bigger Bus Needed")) {
-                                biggerBusMap.put(date, biggerBusMap.getOrDefault(date, 0) + 1);
-                            }
-                            if (bus.equals("Smaller Bus Needed")) {
-                                smallerBusMap.put(date, smallerBusMap.getOrDefault(date, 0) + 1);
+                        for(DataSnapshot reportSnapshot : dataSnapshot.child("Reports").getChildren()) {
+                            String date = reportSnapshot.child("date").getValue(String.class);
+                            long reportTimestamp = getTimestampFromString(date);
+                            if (reportTimestamp >= sevenDaysAgo) {
+                                String bus = reportSnapshot.child("report").getValue(String.class);
+                                dateList.add(date);
+                                if (date != null && bus != null) {
+                                    if (bus.equals("Bigger Bus Needed")) {
+                                        biggerBusMap.put(date, biggerBusMap.getOrDefault(date, 0) + 1);
+                                    }
+                                    if (bus.equals("Smaller Bus Needed")) {
+                                        smallerBusMap.put(date, smallerBusMap.getOrDefault(date, 0) + 1);
+                                    }
+                                }
                             }
                         }
 
@@ -116,5 +123,18 @@ public class ReportAnalytics extends AppCompatActivity {
             super(x, biggerBus);
             setValue("smallerBus", smallerBus);
         }
+    }
+
+    private long getTimestampFromString(String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        try {
+            Date dateS = dateFormat.parse(date);
+            if (dateS != null) {
+                return dateS.getTime();
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

@@ -31,7 +31,6 @@ public class Analytics extends AppCompatActivity {
 
     AnyChartView anyChartView;
     FirebaseDatabase database;
-    Button reports;
     String[] months = {"Clane Garda Station","Bachelors Walk","Edenderry Town Hall","Colonel Perry Street","Carbury","Derrinturn","Allenwood","Coill Dubh","Prosperous Church","Straffan","Barberstown Cross","St Wolstans School","Tandys Lane","Liffey Valley SC","Heuston Station","Connolly Station"};
 
     @Override
@@ -59,15 +58,7 @@ public class Analytics extends AppCompatActivity {
         AtomicInteger countLV = new AtomicInteger(0);
         AtomicInteger countHS = new AtomicInteger(0);
         AtomicInteger countCS = new AtomicInteger(0);
-        reports = findViewById(R.id.reportAnalytics);
 
-        reports.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Analytics.this, ReportAnalytics.class);
-                startActivity(intent);
-            }
-        });
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("User").child(firebaseUser.getUid()).child("Bookings");

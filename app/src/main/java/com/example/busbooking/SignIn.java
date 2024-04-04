@@ -59,10 +59,30 @@ public class SignIn extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            mDialog.dismiss();
+
+                            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(auth.getCurrentUser().getUid());
+                            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    mDialog.dismiss();
+                                    String userType = dataSnapshot.child("code").getValue(String.class);
+                                    if (userType != null && userType.equals("admin")){
+                                        Intent intent = new Intent(SignIn.this, AdminWelcome.class);
+                                        startActivity(intent);
+                                    }else {
+                                        // User is not admin, navigate to WelcomeActivity
+                                        Intent intent = new Intent(SignIn.this, Welcome.class);
+                                        startActivity(intent);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    mDialog.dismiss();
+                                    Toast.makeText(SignIn.this, "Failed to fetch user details", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             Toast.makeText(SignIn.this, "Login Successful", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(SignIn.this, Welcome.class);
-                            startActivity(intent);
                         }else{
                             mDialog.dismiss();
                             Toast.makeText(SignIn.this, "Login Unsuccessful", Toast.LENGTH_LONG).show();
