@@ -34,8 +34,9 @@ public class Booking extends AppCompatActivity {
     RadioGroup rg;
     Button checkout;
 
-    RadioGroup routeType;
+    RadioGroup routeType, ticketType;
     String fromSel, toSel;
+    double amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,7 @@ public class Booking extends AppCompatActivity {
         student = findViewById(R.id.rbStudent);
         child = findViewById(R.id.rbChild);
         routeType =  findViewById(R.id.RouteType);
+        ticketType =  findViewById(R.id.rg_TicketType);
         checkout = findViewById(R.id.CheckoutBtn);
         rg = findViewById(R.id.rg_TicketType);
 
@@ -125,6 +127,20 @@ public class Booking extends AppCompatActivity {
             }
         });
 
+        ticketType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.rbAdult){
+                    amount = 3.30;
+                }else if(checkedId==R.id.rbStudent){
+                    amount = 2.80;
+                }else if(checkedId==R.id.rbChild){
+                    amount = 1.90;
+                }
+
+            }
+        });
+
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,6 +178,7 @@ public class Booking extends AppCompatActivity {
                     bookingData.put("email",textEmail);
                     bookingData.put("from",fromSel);
                     bookingData.put("to",toSel);
+                    bookingData.put("price",amount);
                     bookingRef.child(bookingsID).setValue(bookingData);
 
 
