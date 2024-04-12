@@ -94,7 +94,6 @@ public class Booking extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.oneonefive) {
-                    // Code to populate spinners for oneonefive
                     Spinner mySpinner = findViewById(R.id.spinner1);
                     ArrayAdapter<String> myAdapter = new ArrayAdapter<>(Booking.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.oneonefiveFrom));
                     myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

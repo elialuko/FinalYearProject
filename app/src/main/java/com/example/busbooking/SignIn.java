@@ -70,7 +70,6 @@ public class SignIn extends AppCompatActivity {
                                         Intent intent = new Intent(SignIn.this, AdminWelcome.class);
                                         startActivity(intent);
                                     }else {
-                                        // User is not admin, navigate to WelcomeActivity
                                         Intent intent = new Intent(SignIn.this, Welcome.class);
                                         startActivity(intent);
                                     }
