@@ -1,13 +1,14 @@
 package com.example.busbooking;
 
 public class Report {
-    String date, time, report;
+    String date, time, route, report;
 
     public Report(){}
 
-    public Report(String date, String time, String report) {
+    public Report(String date, String time, String route, String report) {
         this.date = date;
         this.time = time;
+        this.route = route;
         this.report = report;
     }
 
@@ -33,5 +34,13 @@ public class Report {
 
     public void setReport(String report) {
         this.report = report;
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
     }
 }

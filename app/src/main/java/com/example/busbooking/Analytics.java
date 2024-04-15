@@ -31,6 +31,7 @@ public class Analytics extends AppCompatActivity {
 
     AnyChartView anyChartView;
     FirebaseDatabase database;
+    Button next;
     String[] months = {"Clane Garda Station","Bachelors Walk","Edenderry Town Hall","Colonel Perry Street","Carbury","Derrinturn","Allenwood","Coill Dubh","Prosperous Church","Straffan","Barberstown Cross","St Wolstans School","Tandys Lane","Liffey Valley SC","Heuston Station","Connolly Station"};
 
     @Override
@@ -39,6 +40,7 @@ public class Analytics extends AppCompatActivity {
         setContentView(R.layout.activity_analytics);
         anyChartView=findViewById(R.id.anyChartView);
         database = FirebaseDatabase.getInstance();
+        next = findViewById(R.id.next);
         DatabaseReference reference = database.getReference("Bookings");
 
         String to1 = "Clane Garda Station";
@@ -59,6 +61,13 @@ public class Analytics extends AppCompatActivity {
         AtomicInteger countHS = new AtomicInteger(0);
         AtomicInteger countCS = new AtomicInteger(0);
 
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Analytics.this, Analytics115.class);
+                startActivity(i);
+            }
+        });
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("User").child(firebaseUser.getUid()).child("Bookings");
@@ -115,7 +124,7 @@ public class Analytics extends AppCompatActivity {
                     dataEntries.add(new ValueDataEntry(months[i],salary[i]));
                 }
                 pie.data(dataEntries);
-                pie.title("Where Your Buying Your Tickets To");
+                pie.title("Where Your Buying Your Tickets To On The 120 Route");
                 anyChartView.setChart(pie);
             }
 
@@ -137,7 +146,7 @@ public class Analytics extends AppCompatActivity {
                 //dataEntries.add(new ValueDataEntry(months[i],salary[i]));
             }
             ((Cartesian) chart).data(dataEntries);
-            chart.title("Where Your Buying Your Tickets To");
+            chart.title("Where Your Buying Your Tickets To On The 120 Route");
             anyChartView.setChart(chart);
         }
 

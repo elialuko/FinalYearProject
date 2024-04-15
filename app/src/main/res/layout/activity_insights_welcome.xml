@@ -72,7 +72,7 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/circlebackgroundgreen"
-                    android:src="@drawable/baseline_commute_24"
+                    android:src="@drawable/baseline_bar_chart_24"
                     android:padding="10dp"
                     />
                 <TextView

@@ -31,7 +31,7 @@ public class Reports extends AppCompatActivity {
 
     EditText name, email, report, date, time;
     Button submit;
-    String reportfromS;
+    String reportfromS, routefromS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +49,12 @@ public class Reports extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(myAdapter);
         reportfromS = spinner.getSelectedItem().toString();
+
+        Spinner spinner2 = findViewById(R.id.spinner2);
+        ArrayAdapter<String> myAdapter1 = new ArrayAdapter<>(Reports.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.reportsSpinner2));
+        myAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(myAdapter1);
+        routefromS = spinner2.getSelectedItem().toString();
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();
@@ -104,8 +110,10 @@ public class Reports extends AppCompatActivity {
                     String reportsID = reportsRef.push().getKey();
                     Map<String, Object> reportsData = new HashMap<>();
                     reportfromS = spinner.getSelectedItem().toString();
+                    routefromS = spinner2.getSelectedItem().toString();
                     reportsData.put("date",textDate);
                     reportsData.put("time",textTime);
+                    reportsData.put("route",routefromS);
                     reportsData.put("report",reportfromS);
                     reportsRef.child(reportsID).setValue(reportsData);
                 }
