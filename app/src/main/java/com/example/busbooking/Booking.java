@@ -24,12 +24,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Booking extends AppCompatActivity {
 
-    EditText name, surname, number, email;
+    EditText name, date, number, email;
     RadioButton oneonefive, onetwenty, adult, student, child;
     RadioGroup rg;
     Button checkout;
@@ -43,7 +46,7 @@ public class Booking extends AppCompatActivity {
         setContentView(R.layout.activity_booking);
 
         name = findViewById(R.id.name);
-        surname = findViewById(R.id.surname);
+        date = findViewById(R.id.date);
         number = findViewById(R.id.number);
         email = findViewById(R.id.email);
         oneonefive = findViewById(R.id.oneonefive);
@@ -77,9 +80,10 @@ public class Booking extends AppCompatActivity {
                     String setnum = dataSnapshot.child("phone").getValue(String.class);
                     number.setText((setnum));
 
-
-                    String setsurname = dataSnapshot.child("surname").getValue(String.class);
-                    surname.setText((setsurname));
+                    Date currentDate = new Date();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                    String formattedDate = dateFormat.format(currentDate);
+                    date.setText(formattedDate);
 
             }
 
@@ -144,7 +148,7 @@ public class Booking extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String textName = name.getText().toString();
-                String textSurname = surname.getText().toString();
+                String textDate = date.getText().toString();
                 String textEmail = email.getText().toString();
                 String textNumber = number.getText().toString();
 
@@ -156,12 +160,12 @@ public class Booking extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(textName)){
                     Toast.makeText(Booking.this, "Please Enter a Name", Toast.LENGTH_LONG).show();
-                } else if(TextUtils.isEmpty(textSurname)){
-                    Toast.makeText(Booking.this, "Please Enter a Surname", Toast.LENGTH_LONG).show();
                 }else if(TextUtils.isEmpty(textNumber)){
                     Toast.makeText(Booking.this, "Please Enter a Number", Toast.LENGTH_LONG).show();
                 }else if(TextUtils.isEmpty(textEmail)){
                     Toast.makeText(Booking.this, "Please Enter an Email", Toast.LENGTH_LONG).show();
+                }else if(TextUtils.isEmpty(textDate)){
+                    Toast.makeText(Booking.this, "Please Enter a Date", Toast.LENGTH_LONG).show();
                 }else{
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     FirebaseUser firebaseUser = auth.getCurrentUser();
@@ -175,6 +179,7 @@ public class Booking extends AppCompatActivity {
                     toSel = mySpinner1.getSelectedItem().toString();
                     bookingData.put("name",textName);
                     bookingData.put("email",textEmail);
+                    bookingData.put("date",textDate);
                     bookingData.put("from",fromSel);
                     bookingData.put("to",toSel);
                     bookingData.put("price",amount);
