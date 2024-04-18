@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="Bookings"/>
+                    android:text="Route Optimisation"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -89,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Book a Trip"
+                    android:text="View The Routes"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 

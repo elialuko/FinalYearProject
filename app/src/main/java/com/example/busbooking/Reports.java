@@ -94,14 +94,20 @@ public class Reports extends AppCompatActivity {
                 String textDate = date.getText().toString();
                 String textTime = time.getText().toString();
                 String textReport = report.getText().toString();
+                reportfromS = spinner.getSelectedItem().toString();
+                routefromS = spinner2.getSelectedItem().toString();
                 if (TextUtils.isEmpty(textName)){
                     Toast.makeText(Reports.this, "Please Enter a Name", Toast.LENGTH_LONG).show();
                 } else if(TextUtils.isEmpty(textEmail)){
-                    Toast.makeText(Reports.this, "Please Enter a Surname", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Reports.this, "Please Enter an Email", Toast.LENGTH_LONG).show();
                 }else if(TextUtils.isEmpty(textDate)){
                     Toast.makeText(Reports.this, "Please Enter a Date", Toast.LENGTH_LONG).show();
                 }else if(TextUtils.isEmpty(textTime)){
                     Toast.makeText(Reports.this, "Please Enter a Time", Toast.LENGTH_LONG).show();
+                }else if(reportfromS.equals("----------")){
+                    Toast.makeText(Reports.this, "Please Choose a Complaint", Toast.LENGTH_LONG).show();
+                }else if(routefromS.equals("----------")){
+                    Toast.makeText(Reports.this, "Please Choose a Route", Toast.LENGTH_LONG).show();
                 }else{
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     FirebaseUser firebaseUser = auth.getCurrentUser();
@@ -109,17 +115,17 @@ public class Reports extends AppCompatActivity {
                     DatabaseReference reportsRef = userRef.child("Reports");
                     String reportsID = reportsRef.push().getKey();
                     Map<String, Object> reportsData = new HashMap<>();
-                    reportfromS = spinner.getSelectedItem().toString();
-                    routefromS = spinner2.getSelectedItem().toString();
+
                     reportsData.put("date",textDate);
                     reportsData.put("time",textTime);
                     reportsData.put("route",routefromS);
                     reportsData.put("report",reportfromS);
                     reportsRef.child(reportsID).setValue(reportsData);
+                    Intent intent = new Intent(Reports.this, Welcome.class);
+                    startActivity(intent);
                 }
                 Toast.makeText(Reports.this, "Report Sent Successfully!",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Reports.this, Welcome.class);
-                startActivity(intent);
+
             }
         });
     }

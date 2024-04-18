@@ -151,7 +151,10 @@ public class Booking extends AppCompatActivity {
                 String textDate = date.getText().toString();
                 String textEmail = email.getText().toString();
                 String textNumber = number.getText().toString();
-
+                Spinner mySpinner = findViewById(R.id.spinner1);
+                Spinner mySpinner1 = findViewById(R.id.spinner2);
+                fromSel = mySpinner.getSelectedItem().toString();
+                toSel = mySpinner1.getSelectedItem().toString();
                 int selectedId = rg.getCheckedRadioButtonId();
                 child = findViewById(selectedId);
                 student = findViewById(selectedId);
@@ -166,6 +169,16 @@ public class Booking extends AppCompatActivity {
                     Toast.makeText(Booking.this, "Please Enter an Email", Toast.LENGTH_LONG).show();
                 }else if(TextUtils.isEmpty(textDate)){
                     Toast.makeText(Booking.this, "Please Enter a Date", Toast.LENGTH_LONG).show();
+                }else if(fromSel.equals(toSel)){
+                    Toast.makeText(Booking.this, "Can't Buy Tickets To The Same Stop", Toast.LENGTH_LONG).show();
+                }else if(fromSel.equals("Please select a route first")){
+                    Toast.makeText(Booking.this, "Please select a stop", Toast.LENGTH_LONG).show();
+                }else if(toSel.equals("Please select a route first")){
+                    Toast.makeText(Booking.this, "Please select a stop", Toast.LENGTH_LONG).show();
+                }else if(fromSel.equals("From")){
+                    Toast.makeText(Booking.this, "Please select a stop", Toast.LENGTH_LONG).show();
+                }else if(toSel.equals("To")){
+                    Toast.makeText(Booking.this, "Please select a stop", Toast.LENGTH_LONG).show();
                 }else{
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     FirebaseUser firebaseUser = auth.getCurrentUser();
@@ -173,10 +186,8 @@ public class Booking extends AppCompatActivity {
                     DatabaseReference bookingRef = userRef.child("Bookings");
                     String bookingsID = bookingRef.push().getKey();
                     Map<String, Object> bookingData = new HashMap<>();
-                    Spinner mySpinner = findViewById(R.id.spinner1);
-                    Spinner mySpinner1 = findViewById(R.id.spinner2);
-                    fromSel = mySpinner.getSelectedItem().toString();
-                    toSel = mySpinner1.getSelectedItem().toString();
+
+
                     bookingData.put("name",textName);
                     bookingData.put("email",textEmail);
                     bookingData.put("date",textDate);
