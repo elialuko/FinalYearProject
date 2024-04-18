@@ -6,4 +6,5 @@
     <color name="background">#fcfcfc</color>
     <color name="colorAccent">#FF4081</color>
     <color name="lightgray">#ededed</color>
+    <color name="red">#FB0000</color>
 </resources>

@@ -2,8 +2,11 @@ package com.example.busbooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,14 +21,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class Transactions extends AppCompatActivity {
 
     TextView total;
     Button select;
+    ArrayList<Bookings> list;
+    RecyclerView recyclerView;
+    Adapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transactions);
+        recyclerView = findViewById(R.id.recyclerview);
+        list = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new Adapter(this, list);
+        recyclerView.setAdapter(adapter);
         total = findViewById(R.id.total);
         select = findViewById(R.id.select);
         //total.setText("€"+"3.30");
@@ -69,6 +82,27 @@ public class Transactions extends AppCompatActivity {
             }
         });
 
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String date = dataSnapshot.child("date").getValue(String.class);
+                    if (date != null && date.charAt(3) == '0' && date.charAt(4) == '1') {
+                        Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                        Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                        list.add(bookings);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
         select.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +131,27 @@ public class Transactions extends AppCompatActivity {
                                 e.printStackTrace();
                                 // Handle the exception gracefully, perhaps display an error message to the user
                             }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '0' && date.charAt(4) == '4') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
@@ -134,6 +189,27 @@ public class Transactions extends AppCompatActivity {
 
                         }
                     });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '0' && date.charAt(4) == '2') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }else if(mySpinner.getSelectedItem().toString().equalsIgnoreCase("March")) {
                     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -157,6 +233,27 @@ public class Transactions extends AppCompatActivity {
                                 e.printStackTrace();
                                 // Handle the exception gracefully, perhaps display an error message to the user
                             }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '0' && date.charAt(4) == '3') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
@@ -194,6 +291,27 @@ public class Transactions extends AppCompatActivity {
 
                         }
                     });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '0' && date.charAt(4) == '5') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }else if(mySpinner.getSelectedItem().toString().equalsIgnoreCase("June")) {
                     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -217,6 +335,27 @@ public class Transactions extends AppCompatActivity {
                                 e.printStackTrace();
                                 // Handle the exception gracefully, perhaps display an error message to the user
                             }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '0' && date.charAt(4) == '6') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
@@ -254,6 +393,27 @@ public class Transactions extends AppCompatActivity {
 
                         }
                     });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '0' && date.charAt(4) == '7') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }else if(mySpinner.getSelectedItem().toString().equalsIgnoreCase("August")) {
                     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -277,6 +437,27 @@ public class Transactions extends AppCompatActivity {
                                 e.printStackTrace();
                                 // Handle the exception gracefully, perhaps display an error message to the user
                             }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '0' && date.charAt(4) == '8') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
@@ -314,6 +495,27 @@ public class Transactions extends AppCompatActivity {
 
                         }
                     });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '0' && date.charAt(4) == '9') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }else if(mySpinner.getSelectedItem().toString().equalsIgnoreCase("October")) {
                     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -337,6 +539,27 @@ public class Transactions extends AppCompatActivity {
                                 e.printStackTrace();
                                 // Handle the exception gracefully, perhaps display an error message to the user
                             }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '1' && date.charAt(4) == '0') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
@@ -374,6 +597,27 @@ public class Transactions extends AppCompatActivity {
 
                         }
                     });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '1' && date.charAt(4) == '1') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }else if(mySpinner.getSelectedItem().toString().equalsIgnoreCase("December")) {
                     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -404,6 +648,27 @@ public class Transactions extends AppCompatActivity {
 
                         }
                     });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '1' && date.charAt(4) == '2') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }else if(mySpinner.getSelectedItem().toString().equalsIgnoreCase("January")) {
                     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -427,6 +692,27 @@ public class Transactions extends AppCompatActivity {
                                 e.printStackTrace();
                                 // Handle the exception gracefully, perhaps display an error message to the user
                             }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    userRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                String date = dataSnapshot.child("date").getValue(String.class);
+                                if (date != null && date.charAt(3) == '0' && date.charAt(4) == '1') {
+                                    Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                                    Log.d("FirebaseData", "Forecasts: " + bookings.toString());
+                                    list.add(bookings);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
