@@ -194,6 +194,8 @@ public class Booking extends AppCompatActivity {
                     bookingData.put("from",fromSel);
                     bookingData.put("to",toSel);
                     bookingData.put("price",amount);
+                    bookingData.put("status","active");
+                    bookingData.put("id", bookingsID);
                     bookingRef.child(bookingsID).setValue(bookingData);
 
 

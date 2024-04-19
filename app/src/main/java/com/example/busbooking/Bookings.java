@@ -1,19 +1,21 @@
 package com.example.busbooking;
 
 public class Bookings {
-    private String name, email, from, to, date;
+    private String name, email, from, to, date, status, id;
     double price;
 
     public Bookings(){
 
     }
 
-    public Bookings(String name, String email, String from, String to, String date, double price) {
+    public Bookings(String name, String email, String from, String to, String date, String status, String id, double price) {
         this.name = name;
         this.email = email;
         this.from = from;
         this.to = to;
         this.date = date;
+        this.status = status;
+        this.id = id;
         this.price = price;
     }
 
@@ -63,5 +65,21 @@ public class Bookings {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

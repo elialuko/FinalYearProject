@@ -45,9 +45,12 @@ public class List extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String status = dataSnapshot.child("status").getValue(String.class);
                         Bookings bookings = dataSnapshot.getValue(Bookings.class);
+                    if (status != null && status.equals("active")) {
                         Log.d("FirebaseData", "Forecasts: " + bookings.toString());
                         list.add(bookings);
+                        }
                     }
 
                 adapter.notifyDataSetChanged();
