@@ -30,7 +30,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RouteAnalytics115From extends AppCompatActivity {
     AnyChartView anyChartView;
     FirebaseDatabase database;
-    Button select,clear;
+    Button select,clear, home;
     TextView count;
 
 
@@ -41,6 +41,7 @@ public class RouteAnalytics115From extends AppCompatActivity {
         anyChartView = findViewById(R.id.anyChartView);
         select = findViewById(R.id.select);
         clear = findViewById(R.id.clear);
+        home = findViewById(R.id.home);
         Spinner mySpinner = findViewById(R.id.spinner);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<>(RouteAnalytics115From.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.days));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -63,6 +64,14 @@ public class RouteAnalytics115From extends AppCompatActivity {
         AtomicInteger countHS = new AtomicInteger(0);
         AtomicInteger countBW = new AtomicInteger(0);
         AtomicInteger countCS = new AtomicInteger(0);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RouteAnalytics115From.this, AdminWelcome.class);
+                startActivity(i);
+            }
+        });
 
         DatabaseReference userRef = database.getReference("User");
 

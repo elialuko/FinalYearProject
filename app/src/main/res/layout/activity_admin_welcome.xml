@@ -140,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="View User Reports For The 120 Route"
+                    android:text="View User Reports For The 115 Route"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
             </LinearLayout>
@@ -185,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="View Route Data For The 120 Route"
+                    android:text="View Route Data For The 115 Route"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

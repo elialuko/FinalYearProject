@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RouteAnalytics extends AppCompatActivity {
     AnyChartView anyChartView;
     FirebaseDatabase database;
-    Button next, select , clear;
+    Button next, select , clear, home;
     TextView count;
     String[] months = {"Clane Garda Station","Bachelors Walk","Edenderry Town Hall","Colonel Perry Street","Carbury","Derrinturn","Allenwood","Coill Dubh","Prosperous Church","Straffan","Barberstown Cross","St Wolstans School","Tandys Lane","Liffey Valley SC","Heuston Station","Connolly Station"};
 
@@ -45,6 +45,7 @@ public class RouteAnalytics extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         next = findViewById(R.id.next);
         select = findViewById(R.id.select);
+        home = findViewById(R.id.home);
         clear = findViewById(R.id.clear);
         Spinner mySpinner = findViewById(R.id.spinner);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<>(RouteAnalytics.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.days));
@@ -77,6 +78,14 @@ public class RouteAnalytics extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(RouteAnalytics.this, RouteAnalyticsFrom.class);
+                startActivity(i);
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RouteAnalytics.this, AdminWelcome.class);
                 startActivity(i);
             }
         });
@@ -163,7 +172,7 @@ public class RouteAnalytics extends AppCompatActivity {
 
                         }
                     });
-                }if (mySpinner.getSelectedItem().toString().equalsIgnoreCase("Teusday")) {
+                }if (mySpinner.getSelectedItem().toString().equalsIgnoreCase("Tuesday")) {
                     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -173,7 +182,7 @@ public class RouteAnalytics extends AppCompatActivity {
                                 for (DataSnapshot bookingsSnapshot : dataSnapshot.child("Bookings").getChildren()) {
                                     String toCGS = bookingsSnapshot.child("to").getValue(String.class);
                                     String day = bookingsSnapshot.child("day").getValue(String.class);
-                                    if ("Teusday".equals(day)) {
+                                    if ("Tuesday".equals(day)) {
                                         if (toCGS != null && toCGS.equals("Clane Garda Station")) {
                                             count.incrementAndGet();
                                         }

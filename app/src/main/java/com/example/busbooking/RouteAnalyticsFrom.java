@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RouteAnalyticsFrom extends AppCompatActivity {
     AnyChartView anyChartView;
     FirebaseDatabase database;
-    Button select , clear;
+    Button select , clear, home;
     TextView count;
     String[] months = {"Clane Garda Station","Bachelors Walk","Edenderry Town Hall","Colonel Perry Street","Carbury","Derrinturn","Allenwood","Coill Dubh","Prosperous Church","Straffan","Barberstown Cross","St Wolstans School","Tandys Lane","Liffey Valley SC","Heuston Station","Connolly Station"};
 
@@ -45,6 +45,7 @@ public class RouteAnalyticsFrom extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         select = findViewById(R.id.select);
         clear = findViewById(R.id.clear);
+        home = findViewById(R.id.home);
         count = findViewById(R.id.count);
         count.setText("* Click clear before selecting a new day");
         Spinner mySpinner = findViewById(R.id.spinner);
@@ -67,6 +68,14 @@ public class RouteAnalyticsFrom extends AppCompatActivity {
         AtomicInteger countLV = new AtomicInteger(0);
         AtomicInteger countHS = new AtomicInteger(0);
         AtomicInteger countCS = new AtomicInteger(0);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RouteAnalyticsFrom.this, AdminWelcome.class);
+                startActivity(i);
+            }
+        });
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();

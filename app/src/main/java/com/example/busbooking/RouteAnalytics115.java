@@ -31,7 +31,7 @@ public class RouteAnalytics115 extends AppCompatActivity {
 
     AnyChartView anyChartView;
     FirebaseDatabase database;
-    Button next, clear,select;
+    Button next, clear,select, home;
     TextView count;
 
     String[] stops = {"Enfield", "Cloncurry Cross","Kelleghers Cross","Ferrans Lock","Kilcock","Kilcock Square","Millerstown","Maynooth University","Old Greenfield","Tandys Lane","Liffey Valley Sc","Kennelsfort Road","Heuston Station","Bachelors Walk","Connolly Station"};
@@ -44,6 +44,7 @@ public class RouteAnalytics115 extends AppCompatActivity {
         next = findViewById(R.id.next);
         clear = findViewById(R.id.clear);
         select = findViewById(R.id.select);
+        home = findViewById(R.id.home);
         Spinner mySpinner = findViewById(R.id.spinner);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<>(RouteAnalytics115.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.days));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -73,6 +74,14 @@ public class RouteAnalytics115 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(RouteAnalytics115.this, RouteAnalytics115From.class);
+                startActivity(i);
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(RouteAnalytics115.this, AdminWelcome.class);
                 startActivity(i);
             }
         });
