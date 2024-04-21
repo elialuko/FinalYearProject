@@ -81,7 +81,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         String message = "Name: " + bookings.getName() + "\n" +
                 "From: " + bookings.getFrom() + "\n" +
                 "To: " + bookings.getTo() + "\n" +
+                "Date" + bookings.getDate() + "\n" +
                 "Price: €" + bookings.getPrice() + "\n" +
+                "Ticket Valid Only For Date Purchased" + "\n" +
                 "Expires After Activation";
 
         builder.setMessage(message);

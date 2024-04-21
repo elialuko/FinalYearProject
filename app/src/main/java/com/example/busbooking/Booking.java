@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -186,6 +187,8 @@ public class Booking extends AppCompatActivity {
                     DatabaseReference bookingRef = userRef.child("Bookings");
                     String bookingsID = bookingRef.push().getKey();
                     Map<String, Object> bookingData = new HashMap<>();
+                    String daysOfWeek = calculateDayOfWeek(textDate);;
+
 
 
                     bookingData.put("name",textName);
@@ -193,6 +196,7 @@ public class Booking extends AppCompatActivity {
                     bookingData.put("date",textDate);
                     bookingData.put("from",fromSel);
                     bookingData.put("to",toSel);
+                    bookingData.put("day",daysOfWeek);
                     bookingData.put("price",amount);
                     bookingData.put("status","active");
                     bookingData.put("id", bookingsID);
@@ -209,7 +213,17 @@ public class Booking extends AppCompatActivity {
 
 
     }
-
+    private String calculateDayOfWeek(String date) {
+        String[] parts = date.split("-");
+        int day = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int year = Integer.parseInt(parts[2]);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month - 1, day); // Month is 0-based in Calendar
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        String[] daysOfWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        return daysOfWeek[dayOfWeek - 1];
+    }
     private void populateSpinnersWithDefaultArrays() {
         // Populate spinners with default arrays
         Spinner mySpinner = findViewById(R.id.spinner1);

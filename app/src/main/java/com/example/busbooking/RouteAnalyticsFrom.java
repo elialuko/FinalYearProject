@@ -29,10 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class RouteAnalytics extends AppCompatActivity {
+public class RouteAnalyticsFrom extends AppCompatActivity {
     AnyChartView anyChartView;
     FirebaseDatabase database;
-    Button next, select , clear;
+    Button select , clear;
     TextView count;
     String[] months = {"Clane Garda Station","Bachelors Walk","Edenderry Town Hall","Colonel Perry Street","Carbury","Derrinturn","Allenwood","Coill Dubh","Prosperous Church","Straffan","Barberstown Cross","St Wolstans School","Tandys Lane","Liffey Valley SC","Heuston Station","Connolly Station"};
 
@@ -40,18 +40,17 @@ public class RouteAnalytics extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_route_analytics);
+        setContentView(R.layout.activity_route_analytics_from);
         anyChartView = findViewById(R.id.anyChartView);
         database = FirebaseDatabase.getInstance();
-        next = findViewById(R.id.next);
         select = findViewById(R.id.select);
         clear = findViewById(R.id.clear);
-        Spinner mySpinner = findViewById(R.id.spinner);
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(RouteAnalytics.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.days));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mySpinner.setAdapter(myAdapter);
         count = findViewById(R.id.count);
         count.setText("* Click clear before selecting a new day");
+        Spinner mySpinner = findViewById(R.id.spinner);
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(RouteAnalyticsFrom.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.days));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner.setAdapter(myAdapter);
         AtomicInteger count = new AtomicInteger(0);
         AtomicInteger countBW = new AtomicInteger(0);
         AtomicInteger countET = new AtomicInteger(0);
@@ -73,14 +72,6 @@ public class RouteAnalytics extends AppCompatActivity {
         FirebaseUser firebaseUser = auth.getCurrentUser();
         DatabaseReference userRef = database.getReference("User");
 
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(RouteAnalytics.this, RouteAnalyticsFrom.class);
-                startActivity(i);
-            }
-        });
-
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +83,7 @@ public class RouteAnalytics extends AppCompatActivity {
                             String routeWithMaxBookings = "";
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 for (DataSnapshot bookingsSnapshot : dataSnapshot.child("Bookings").getChildren()) {
-                                    String toCGS = bookingsSnapshot.child("to").getValue(String.class);
+                                    String toCGS = bookingsSnapshot.child("from").getValue(String.class);
                                     String day = bookingsSnapshot.child("day").getValue(String.class);
                                     if ("Monday".equals(day)) {
                                         if (toCGS != null && toCGS.equals("Clane Garda Station")) {
@@ -163,7 +154,7 @@ public class RouteAnalytics extends AppCompatActivity {
 
                         }
                     });
-                }if (mySpinner.getSelectedItem().toString().equalsIgnoreCase("Teusday")) {
+                }if (mySpinner.getSelectedItem().toString().equalsIgnoreCase("Tuesday")) {
                     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -171,9 +162,9 @@ public class RouteAnalytics extends AppCompatActivity {
                             String routeWithMaxBookings = "";
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 for (DataSnapshot bookingsSnapshot : dataSnapshot.child("Bookings").getChildren()) {
-                                    String toCGS = bookingsSnapshot.child("to").getValue(String.class);
+                                    String toCGS = bookingsSnapshot.child("from").getValue(String.class);
                                     String day = bookingsSnapshot.child("day").getValue(String.class);
-                                    if ("Teusday".equals(day)) {
+                                    if ("Tuesday".equals(day)) {
                                         if (toCGS != null && toCGS.equals("Clane Garda Station")) {
                                             count.incrementAndGet();
                                         }
@@ -250,7 +241,7 @@ public class RouteAnalytics extends AppCompatActivity {
                             String routeWithMaxBookings = "";
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 for (DataSnapshot bookingsSnapshot : dataSnapshot.child("Bookings").getChildren()) {
-                                    String toCGS = bookingsSnapshot.child("to").getValue(String.class);
+                                    String toCGS = bookingsSnapshot.child("from").getValue(String.class);
                                     String day = bookingsSnapshot.child("day").getValue(String.class);
                                     if ("Wednesday".equals(day)) {
                                         if (toCGS != null && toCGS.equals("Clane Garda Station")) {
@@ -329,7 +320,7 @@ public class RouteAnalytics extends AppCompatActivity {
                             String routeWithMaxBookings = "";
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 for (DataSnapshot bookingsSnapshot : dataSnapshot.child("Bookings").getChildren()) {
-                                    String toCGS = bookingsSnapshot.child("to").getValue(String.class);
+                                    String toCGS = bookingsSnapshot.child("from").getValue(String.class);
                                     String day = bookingsSnapshot.child("day").getValue(String.class);
                                     if ("Thursday".equals(day)) {
                                         if (toCGS != null && toCGS.equals("Clane Garda Station")) {
@@ -408,7 +399,7 @@ public class RouteAnalytics extends AppCompatActivity {
                             String routeWithMaxBookings = "";
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 for (DataSnapshot bookingsSnapshot : dataSnapshot.child("Bookings").getChildren()) {
-                                    String toCGS = bookingsSnapshot.child("to").getValue(String.class);
+                                    String toCGS = bookingsSnapshot.child("from").getValue(String.class);
                                     String day = bookingsSnapshot.child("day").getValue(String.class);
                                     if ("Friday".equals(day)) {
                                         if (toCGS != null && toCGS.equals("Clane Garda Station")) {
@@ -487,7 +478,7 @@ public class RouteAnalytics extends AppCompatActivity {
                             String routeWithMaxBookings = "";
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 for (DataSnapshot bookingsSnapshot : dataSnapshot.child("Bookings").getChildren()) {
-                                    String toCGS = bookingsSnapshot.child("to").getValue(String.class);
+                                    String toCGS = bookingsSnapshot.child("from").getValue(String.class);
                                     String day = bookingsSnapshot.child("day").getValue(String.class);
                                     if ("Saturday".equals(day)) {
                                         if (toCGS != null && toCGS.equals("Clane Garda Station")) {
@@ -566,7 +557,7 @@ public class RouteAnalytics extends AppCompatActivity {
                             String routeWithMaxBookings = "";
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 for (DataSnapshot bookingsSnapshot : dataSnapshot.child("Bookings").getChildren()) {
-                                    String toCGS = bookingsSnapshot.child("to").getValue(String.class);
+                                    String toCGS = bookingsSnapshot.child("from").getValue(String.class);
                                     String day = bookingsSnapshot.child("day").getValue(String.class);
                                     if ("Sunday".equals(day)) {
                                         if (toCGS != null && toCGS.equals("Clane Garda Station")) {

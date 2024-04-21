@@ -9,7 +9,7 @@ import android.view.View;
 
 public class AdminWelcome extends AppCompatActivity implements View.OnClickListener {
 
-    CardView analytics, route, logout;
+    CardView analytics, route, logout, analytics2, route2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +17,14 @@ public class AdminWelcome extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_admin_welcome);
         analytics = findViewById(R.id.analytics_card);
         route = findViewById(R.id.route_card);
+        analytics2 = findViewById(R.id.analytics2_card);
+        route2 = findViewById(R.id.route2_card);
         logout = findViewById(R.id.logout_card);
 
         analytics.setOnClickListener(this);
         route.setOnClickListener(this);
+        analytics2.setOnClickListener(this);
+        route2.setOnClickListener(this);
         logout.setOnClickListener(this);
     }
 
@@ -36,6 +40,14 @@ public class AdminWelcome extends AppCompatActivity implements View.OnClickListe
                 break;
                 case "route":
                 i = new Intent(AdminWelcome.this, RouteAnalytics.class);
+                startActivity(i);
+                break;
+                case "analytics2":
+                i = new Intent(AdminWelcome.this, ReportAnalytics115.class);
+                startActivity(i);
+                break;
+                case "route2":
+                i = new Intent(AdminWelcome.this, RouteAnalytics115.class);
                 startActivity(i);
                 break;
             case "logout" : i = new Intent(AdminWelcome.this, Logout.class);
