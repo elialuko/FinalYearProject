@@ -13,8 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.busbooking.ActivatedTicket;
 import com.example.busbooking.Bookings;
 import com.example.busbooking.R;
+import com.example.busbooking.Welcome;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -92,6 +94,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 activate(bookings.getId());
+                Intent intent = new Intent(context, ActivatedTicket.class);
+                intent.putExtra("name", bookings.getName());
+                intent.putExtra("from", bookings.getFrom());
+                intent.putExtra("to", bookings.getTo());
+                intent.putExtra("date", bookings.getDate());
+                intent.putExtra("price", bookings.getPrice());
+                ((com.example.busbooking.List) context).finish();
+
+                context.startActivity(intent);
             }
         });
 
