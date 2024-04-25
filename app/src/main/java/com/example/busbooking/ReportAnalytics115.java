@@ -44,14 +44,15 @@ public class ReportAnalytics115 extends AppCompatActivity {
                 List<String> dateList = new ArrayList<>();
                 Map<String, Integer> biggerBusMap = new HashMap<>();
                 Map<String, Integer> smallerBusMap = new HashMap<>();
-                long sevenDaysAgo = System.currentTimeMillis() - (7 * 24 * 60 * 60 * 1000);
+                //long sevenDaysAgo = System.currentTimeMillis() - (7 * 24 * 60 * 60 * 1000);
+                long eightDaysAgo = System.currentTimeMillis() - (8 * 24 * 60 * 60 * 1000);
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     for(DataSnapshot reportSnapshot : dataSnapshot.child("Reports").getChildren()) {
                         String route = reportSnapshot.child("route").getValue(String.class);
                         if (route != null && route.equals("115")) {
                             String date = reportSnapshot.child("date").getValue(String.class);
                             long reportTimestamp = getTimestampFromString(date);
-                            if (reportTimestamp >= sevenDaysAgo) {
+                            if (reportTimestamp >= eightDaysAgo) {
                                 String bus = reportSnapshot.child("report").getValue(String.class);
                                 dateList.add(date);
                                 if (date != null && bus != null) {

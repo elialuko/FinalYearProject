@@ -112,7 +112,6 @@ public class Booking extends AppCompatActivity {
                     mySpinner1.setAdapter(myAdapter1);
                     toSel = mySpinner1.getSelectedItem().toString();
                 } else if (checkedId == R.id.onetwenty) {
-                    // Code to populate spinners for onetwenty
                     Spinner mySpinner = findViewById(R.id.spinner1);
                     ArrayAdapter<String> myAdapter = new ArrayAdapter<>(Booking.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.onetwentyFrom));
                     myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -219,13 +218,12 @@ public class Booking extends AppCompatActivity {
         int month = Integer.parseInt(parts[1]);
         int year = Integer.parseInt(parts[2]);
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month - 1, day); // Month is 0-based in Calendar
+        calendar.set(year, month - 1, day);
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
         String[] daysOfWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
         return daysOfWeek[dayOfWeek - 1];
     }
     private void populateSpinnersWithDefaultArrays() {
-        // Populate spinners with default arrays
         Spinner mySpinner = findViewById(R.id.spinner1);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<>(Booking.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Notice));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

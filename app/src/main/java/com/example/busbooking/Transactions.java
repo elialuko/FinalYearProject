@@ -65,14 +65,14 @@ public class Transactions extends AppCompatActivity {
                             if (price != null) {
                                 totalAmount += price;
                             } else {
-                                // Handle null prices if necessary
+
                             }
                         }
                     }
                     total.setText("€" + String.format("%.2f", totalAmount));
                 } catch (Exception e) {
                     e.printStackTrace();
-                    // Handle the exception gracefully, perhaps display an error message to the user
+
                 }
             }
 
@@ -122,14 +122,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -173,14 +173,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -224,14 +224,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -275,14 +275,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -326,14 +326,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -377,14 +377,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -428,14 +428,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -479,14 +479,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -530,14 +530,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -581,14 +581,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -632,14 +632,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
@@ -683,14 +683,14 @@ public class Transactions extends AppCompatActivity {
                                         if (price != null) {
                                             totalAmount += price;
                                         } else {
-                                            // Handle null prices if necessary
+
                                         }
                                     }
                                 }
                                 total.setText("€" + String.format("%.2f", totalAmount));
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                // Handle the exception gracefully, perhaps display an error message to the user
+
                             }
                         }
 
