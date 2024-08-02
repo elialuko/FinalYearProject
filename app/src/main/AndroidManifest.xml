@@ -19,6 +19,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".BookingPrediction"
+            android:exported="false"
+            android:label="@string/title_activity_booking_prediction"
+            android:theme="@style/Theme.Busbooking" />
+        <activity
+            android:name=".FutureBookingCounters"
+            android:exported="false" />
+        <activity
+            android:name=".FutureStops"
+            android:exported="false" />
+        <activity
             android:name=".ActivatedTicket"
             android:exported="false" />
         <activity
